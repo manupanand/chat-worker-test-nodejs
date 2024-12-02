@@ -22,7 +22,7 @@ jobs:
         run: npm install -g wrangler
 
       - name: Deploy Worker
-        run: wrangler publish --name "my-worker" ./worker.js
+        run: wrangler publish --name "my-worker" --compatibility-date "2024-12-02" ./worker.js
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
