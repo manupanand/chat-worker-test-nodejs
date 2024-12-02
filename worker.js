@@ -4,7 +4,7 @@ var src_default = {
     const { method, url } = request;
     const pathname = new URL(url).pathname;
     if (method === "GET" && pathname === "/hello") {
-      return new Response("Hello, GET request received!", {
+      return new Response("Hello, testing change", {
         headers: { "Content-Type": "text/plain" }
       });
     }
