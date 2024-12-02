@@ -3,28 +3,26 @@ name: Deploy Cloudflare Worker
 on:
   push:
     branches:
-      - main # Trigger on pushes to the main branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the code
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Install Wrangler
-      - name: Install Wrangler
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Wrangler CLI
         run: npm install -g wrangler
 
-      # Authenticate Wrangler
-      - name: Authenticate Wrangler
-        run: wrangler config --api-token ${{ secrets.CF_API_TOKEN }}
-
-      # Deploy the Worker
       - name: Deploy Worker
-        run: wrangler publish --name ${{ secrets.WORKER_NAME }}
+        run: wrangler publish
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
