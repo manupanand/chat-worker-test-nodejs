@@ -22,7 +22,7 @@ jobs:
         run: npm install -g wrangler
 
       - name: Deploy Worker
-        run: wrangler publish ./worker.js
+        run: wrangler publish --name my-worker
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
